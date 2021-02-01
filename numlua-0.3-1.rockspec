@@ -32,7 +32,6 @@ dependencies = {
 }
 
 external_dependencies = {
-  FFTW3 = { header = "fftw3.h" },
   HDF5 = { header = "hdf5.h" },
   LAPACK = { library = "lapack" }, -- actually, blas and lapack
 }
@@ -48,11 +47,11 @@ build = {
         "amos.c", "mathx.c", -- C99 math
       },
       -- header files for blas/lapack are already included
-      incdirs = {"$(FFTW3_INCDIR)", "$(HDF5_INCDIR)"},
+      incdirs = {"$(HDF5_INCDIR)"},
       -- assume blas is in same libdir as lapack
-      libdirs = {"$(FFTW3_LIBDIR)", "$(HDF5_LIBDIR)", "$(LAPACK_LIBDIR)"},
+      libdirs = {"$(HDF5_LIBDIR)", "$(LAPACK_LIBDIR)"},
       --libraries = {"hdf5", "fftw3", "lapack", "f77blas", "atlas"},
-      libraries = {"hdf5", "fftw3", "lapack", "blas"}, -- f77 blas
+      libraries = {"hdf5", "lapack", "blas"}, -- f77 blas
     },
     ["numlua.matrix"] = "matrix.lua",
     ["numlua.seeall"] = "seeall.lua",
